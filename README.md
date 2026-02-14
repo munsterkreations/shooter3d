@@ -1,54 +1,51 @@
-# Quick Start Guide
+# Shooter3D - Space Shooting Game
 
-## Fastest Way to Play (No Setup Required!)
+A space shooting game project with multiple implementations.
 
-### Option 1: Ruby OpenGL Version (Recommended)
+## Quick Start - Play Now! 🚀
+
+**Fastest Option (No Assets Needed):**
 ```bash
-# Install OpenGL gems (one-time setup)
 gem install opengl glu glut
-
-# Run the game
 ruby shooter_3d_opengl.rb
 ```
 
-**Controls:**
-- Arrow Keys: Move your ship
-- Space: Shoot
-- ESC: Quit
+**Web Version:** Open `game.html` in your browser to play with FBX models.
 
-This version works immediately with no external assets needed!
-
----
-
-### Option 2: Web Browser Version
-```bash
-# Just open the file in your browser
-# Double-click: game.html
-
-# Or use a local server for best performance:
-python -m http.server 8000
-# Then visit: http://localhost:8000/game.html
-```
+See [QUICKSTART.md](QUICKSTART.md) for detailed instructions.
 
 **Controls:**
-- Arrow Keys or WASD: Move
+- Arrow Keys or WASD: Move your ship
 - Space: Shoot
-- Mouse: Look around
+- ESC/Mouse: Quit/Look around
 
----
+## Project Structure
 
-## Advanced Options
+### Web-Based Games
+- **game.html** - 3D space shooter using Three.js with FBX models ⭐ NEW
+- **index.html** - 2D web game client (requires WebSocket server)
 
-### Mittsu 3D Version (More Features)
-```bash
-# Install mittsu gem
-gem install mittsu
+### Desktop Games (Ruby)
+- **shooter_3d_opengl.rb** - 3D game using Ruby OpenGL/GLUT ⭐ NEW (works immediately!)
+- **shooter_3d.rb** - 3D game using Mittsu library ⭐ NEW (requires mittsu gem)
+- **shooter.rb** - 2D desktop game using Gosu (requires PNG assets)
+- **lib/jekyll.rb** - 3D desktop game with OpenGL (requires PNG assets)
 
-# Run the game
-ruby shooter_3d.rb
-```
+## Available 3D Models
 
-### Install All Dependencies
+The project includes professional FBX 3D models:
+- Player ships: `assets/player/Destroyer_01.fbx`, `Destroyer_04.fbx`
+- Enemy ships: `assets/enemy/Corvette_03.fbx`, `Corvette_04.fbx`
+- Additional ships in root directory
+
+## Setup for Ruby Desktop Versions
+
+### Prerequisites
+- Ruby 3.0.0 or higher
+- Bundler
+
+### Installation
+
 ```bash
 # Run the setup script
 ./Bin/setup
@@ -57,62 +54,38 @@ ruby shooter_3d.rb
 bundle install
 ```
 
----
+### Running Desktop Games
 
-## Troubleshooting
-
-### OpenGL Version Issues
-If you get errors about missing OpenGL:
-
-**Windows:**
 ```bash
-gem install opengl glu glut
+# 3D OpenGL Game (Recommended - No assets needed!)
+ruby shooter_3d_opengl.rb
+
+# 3D Mittsu Game (Requires: gem install mittsu)
+ruby shooter_3d.rb
+
+# 2D Gosu Game (Requires PNG assets)
+ruby shooter.rb
+
+# Original 3D Game (Requires PNG assets)
+ruby lib/jekyll.rb
 ```
 
-**macOS:**
-```bash
-gem install opengl glu glut
-```
+**Note:** 
+- `shooter_3d_opengl.rb` works immediately with no external assets
+- `shooter_3d.rb` requires the mittsu gem: `gem install mittsu`
+- Other versions require PNG image assets. See ASSETS_NEEDED.md for details.
 
-**Linux (Ubuntu/Debian):**
-```bash
-sudo apt-get install freeglut3-dev
-gem install opengl glu glut
-```
+## Features
 
-### Mittsu Version Issues
-If mittsu doesn't install:
-```bash
-# Try installing dependencies first
-gem install glfw3
-gem install mittsu
-```
+- 3D graphics with real spaceship models
+- Score tracking
+- Health system
+- Dynamic enemy spawning
+- Smooth controls
+- Starfield background
+- Collision detection
 
-### Web Version Issues
-If game.html doesn't load models:
-- Make sure you're viewing from a web server (not file://)
-- Check browser console for errors
-- Verify FBX files exist in assets/ folders
+## License
 
----
+MIT
 
-## Game Features
-
-- **3D Graphics**: Real-time 3D rendering with lighting
-- **Score System**: Earn points by destroying enemies
-- **Health System**: Take damage when hit by enemies
-- **Dynamic Spawning**: Enemies spawn continuously
-- **Smooth Controls**: Responsive keyboard controls
-- **Visual Effects**: Engine glow, starfield, lighting effects
-
----
-
-## Which Version Should I Use?
-
-| Version | Pros | Cons |
-|---------|------|------|
-| **shooter_3d_opengl.rb** | ✓ No assets needed<br>✓ Fast<br>✓ Simple setup | - Basic graphics |
-| **game.html** | ✓ Uses FBX models<br>✓ Best graphics<br>✓ No Ruby needed | - Needs web server |
-| **shooter_3d.rb** | ✓ Ruby native<br>✓ Good graphics | - Requires mittsu gem |
-
-**Recommendation:** Start with `shooter_3d_opengl.rb` for immediate gameplay!
