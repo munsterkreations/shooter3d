@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruby Space Shooting Game</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    canvas {
+      border: 1px solid white;
+    }
+    #score {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 24px;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <div id="score">Score: 0</div>
+  <canvas id="gameCanvas" width="640" height="480"></canvas>
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const ws = new WebSocket("ws://localhost:4567");
+
+    let score = 0;
+
+    ws.onmessage = (message) => {
+      const data = JSON.parse(message.data);
+
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw player
+      ctx.fillStyle = "green";
+      ctx.fillRect(data.player.x, data.player.y, 20, 20);
+
+      // Draw bullets
+      data.bullets.forEach((bullet) => {
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(bullet.x, bullet.y, 5, 10);
+      });
+
+      // Draw enemies
+      data.enemies.forEach((enemy) => {
+        ctx.fillStyle = "red";
+        ctx.fillRect(enemy.x, enemy.y, 20, 20);
+      });
+
+      // Update score
+      score = data.score;
+      document.getElementById('score').textContent = `Score: ${score}`;
+    };
+
+    window.addEventListener('keydown', (e) => {
+      ws.send(JSON.stringify({ action: "keydown", key: e.key }));
+    });
+
+    window.addEventListener('keyup', (e) => {
+      ws.send(JSON.stringify({ action: "keyup", key: e.key }));
+    });
+  </script>
+</body>
+</html>
