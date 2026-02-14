@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+  }
+  
+  .game-container {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    background-color: #000;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .player {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #00f;
+    border-radius: 50%;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+  }
+  
+  .bullets, .enemies, .power-ups {
+    position: absolute;
+  }
+  
+  .bullets {
+    width: 4px;
+    height: 10px;
+    background-color: #ff0;
+  }
+  
+  .enemies {
+    width: 50px;
+    height: 50px;
+    background-color: #f00;
+    border-radius: 50%;
+  }
+  
+  .power-ups {
+    width: 20px;
+    height: 20px;
+    background-color: #0f0;
+    border-radius: 50%;
+  }
+  
